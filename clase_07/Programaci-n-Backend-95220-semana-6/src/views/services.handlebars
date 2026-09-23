@@ -1,0 +1,35 @@
+<h2>{{title}}</h2>
+
+{{#if category}}
+    <p>Filtrando por categoría: <strong>{{category}}</strong> — <a href="/services">ver todos</a></p>
+{{/if}}
+
+
+{{#if services.length}}
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Duración</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Disponible</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each services}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.duration}}</td>
+          <td>${{this.price}}</td>
+          <td><a href="/services?category={{this.category}}">{{this.category}}</a></td>
+          <td>{{#if this.available}}Sí{{else}}No{{/if}}</td>
+          <td><a href="/services/{{this._id}}">Ver detalle</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No hay servicios cargados.</p>
+{{/if}}
